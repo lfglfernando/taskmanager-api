@@ -7,25 +7,34 @@ const options = {
     info: {
       title: 'Task Manager API',
       version: '1.0.0',
-      description: 'API to manage tasks with MongoDB, Express, and Node.js',
+      description: 'API to manage tasks',
     },
     servers: [
       {
-        url: 'https://tu-app.onrender.com', // Cambia esta URL por la tuya de Render
-      },
-      {
-        url: 'http://localhost:3000', // Útil para desarrollo local
+        url: 'https://taskmanager-api-h32u.onrender.com',
       },
     ],
   },
-  apis: ['./routes/*.js'], // Ruta donde estarán tus comentarios Swagger en las rutas
+  apis: ['./routes/*.js'],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
 
 function swaggerDocs(app) {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-  console.log('Swagger docs available at /api-docs');
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+    explorer: true,
+    swaggerOptions: {
+      url: '/swagger.json',
+    },
+  }));
+
+
+  app.get('/swagger.json', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(swaggerSpec);
+  });
+
+  console.log('📘 Swagger docs available at /api-docs');
 }
 
 module.exports = swaggerDocs;
