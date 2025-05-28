@@ -12,7 +12,7 @@ let db;
 async function connectToServer(callback) {
   try {
     await client.connect();
-    db = client.db(); // ya estás usando `taskmanager` en la URI
+    db = client.db(); 
     console.log("✅ Connected to MongoDB");
     callback();
   } catch (err) {
