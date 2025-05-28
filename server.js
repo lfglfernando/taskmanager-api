@@ -15,3 +15,6 @@ connectToServer(() => {
     console.log(`🚀 Server running on port ${port}`);
   });
 });
+
+const swaggerDocs = require('./swagger');
+swaggerDocs(app);
