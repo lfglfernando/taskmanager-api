@@ -34,7 +34,7 @@ function swaggerDocs(app) {
     res.send(swaggerSpec);
   });
 
-  console.log('📘 Swagger docs available at /api-docs');
+  console.log('Swagger docs available at /api-docs');
 }
 
 module.exports = swaggerDocs;

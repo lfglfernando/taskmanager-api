@@ -11,11 +11,15 @@ const corsOptions = {
   
 const { connectToServer } = require('./db/conn');
 const taskRoutes = require('./routes/tasks');
+const categoryRoutes = require('./routes/categories');
+
+
 
 const app = express();
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/api/tasks', taskRoutes);
+app.use('/api/categories', categoryRoutes);
 
 const swaggerDocs = require('./swagger');
 swaggerDocs(app);
